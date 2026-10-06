@@ -1,1 +1,353 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pabasara Indumini | Full Stack, 3D Art & Game Developer</title>
+<meta name="description" content="IT undergraduate building web apps, 3D art in Blender and games in Unity.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@600;800&family=Manrope:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0a0a0c; --surface:#111116; --line:#2a2238;
+  --violet:#9d4edd; --lilac:#c77dff; --text:#ece8f4; --muted:#9a93ab;
+  --glow:0 0 18px rgba(157,78,221,.55),0 0 48px rgba(157,78,221,.25);
+  --display:'Syne','Segoe UI',sans-serif; --body:'Manrope','Segoe UI',system-ui,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{background:var(--bg);color:var(--text);font-family:var(--body);line-height:1.65;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;
+  background:radial-gradient(600px 400px at 85% 8%,rgba(157,78,221,.22),transparent 70%),
+             radial-gradient(500px 500px at 5% 55%,rgba(199,125,255,.10),transparent 70%)}
+a{color:inherit;text-decoration:none}
+:focus-visible{outline:2px solid var(--lilac);outline-offset:3px;border-radius:6px}
+.wrap{width:min(1120px,92%);margin-inline:auto}
+h1,h2,h3{font-family:var(--display);line-height:1.05;letter-spacing:-.01em}
+
+/* nav */
+nav{position:sticky;top:0;z-index:10;backdrop-filter:blur(14px);background:rgba(10,10,12,.78);border-bottom:1px solid rgba(157,78,221,.18)}
+nav .wrap{display:flex;justify-content:space-between;align-items:center;padding:16px 0}
+.logo{font-family:var(--display);font-weight:800;font-size:1.25rem;color:var(--lilac);text-shadow:0 0 14px rgba(199,125,255,.6)}
+nav ul{display:flex;gap:30px;list-style:none;font-size:.95rem;color:var(--muted)}
+nav ul a{transition:color .2s,text-shadow .2s}
+nav ul a:hover{color:var(--lilac);text-shadow:0 0 12px rgba(199,125,255,.7)}
+
+/* hero */
+.hero{padding:90px 0 70px}
+.hero .wrap{display:grid;grid-template-columns:1.25fr .75fr;gap:56px;align-items:center}
+.hero h1{font-size:clamp(2.8rem,7vw,5.6rem);font-weight:800}
+.hero h1 span{display:block;color:transparent;-webkit-text-stroke:1.5px var(--lilac);text-shadow:var(--glow)}
+.hero p{margin:26px 0 34px;max-width:52ch;color:var(--muted);font-size:1.12rem}
+.btns{display:flex;gap:14px;flex-wrap:wrap}
+.btn{padding:14px 28px;border-radius:999px;font-weight:600;border:1px solid var(--violet);transition:transform .25s,box-shadow .25s,background .25s}
+.btn.primary{background:var(--violet);color:#fff;box-shadow:var(--glow)}
+.btn.primary:hover{transform:translateY(-3px);box-shadow:0 0 28px rgba(199,125,255,.8),0 0 70px rgba(157,78,221,.4)}
+.btn.ghost{color:var(--lilac)}
+.btn.ghost:hover{background:rgba(157,78,221,.15);box-shadow:var(--glow);transform:translateY(-3px)}
+
+/* profile frame */
+.profile{position:relative;width:min(340px,80%);aspect-ratio:4/5;margin-inline:auto}
+.profile::before{content:"";position:absolute;inset:-4px;border-radius:30px;
+  background:conic-gradient(from 0deg,var(--violet),transparent 30%,var(--lilac),transparent 65%,var(--violet));
+  box-shadow:var(--glow);animation:pulse 3.5s ease-in-out infinite}
+.profile::after{content:"";position:absolute;inset:-30px;border-radius:50%;background:radial-gradient(circle,rgba(157,78,221,.28),transparent 65%);z-index:-1}
+.photo{position:absolute;inset:3px;border-radius:27px;background:var(--surface);overflow:hidden;display:grid;place-items:center}
+.photo img{width:100%;height:100%;object-fit:cover}
+.placeholder{text-align:center;color:var(--muted);font-size:.9rem;padding:20px}
+.placeholder svg{width:96px;margin-bottom:10px;stroke:var(--lilac);filter:drop-shadow(0 0 8px var(--violet))}
+@keyframes pulse{0%,100%{opacity:.7}50%{opacity:1}}
+
+/* sections */
+section{padding:76px 0}
+.head{margin-bottom:40px}
+.head h2{font-size:clamp(2rem,4vw,3rem);font-weight:800}
+.head p{color:var(--muted);margin-top:10px;max-width:58ch}
+.head h2::after{content:"";display:block;width:64px;height:3px;margin-top:16px;border-radius:3px;background:linear-gradient(90deg,var(--violet),var(--lilac));box-shadow:var(--glow)}
+
+/* skill cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:24px}
+.card{position:relative;display:block;background:linear-gradient(160deg,#15121c,var(--surface));border:1px solid var(--line);border-radius:22px;padding:34px 28px;overflow:hidden;transition:transform .35s,border-color .35s,box-shadow .35s}
+.card::before{content:"";position:absolute;inset:0;background:radial-gradient(320px 200px at 50% -10%,rgba(157,78,221,.28),transparent 70%);opacity:0;transition:opacity .35s}
+.card:hover{transform:translateY(-10px);border-color:var(--violet);box-shadow:var(--glow)}
+.card:hover::before{opacity:1}
+.card>*{position:relative}
+.icon{width:58px;height:58px;border-radius:16px;display:grid;place-items:center;margin-bottom:22px;border:1px solid var(--violet);background:rgba(157,78,221,.12);transition:transform .35s,box-shadow .35s}
+.card:hover .icon{transform:rotate(-8deg) scale(1.1);box-shadow:var(--glow)}
+.icon svg{width:28px;height:28px;stroke:var(--lilac);fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.card h3{font-size:1.45rem;margin-bottom:10px}
+.card p{color:var(--muted);font-size:.97rem}
+.tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.tags li{list-style:none;font-size:.8rem;padding:4px 12px;border-radius:999px;border:1px solid var(--line);color:var(--lilac);transition:border-color .3s}
+.card:hover .tags li,.pcard:hover .tags li{border-color:rgba(199,125,255,.55)}
+
+/* project sections */
+.field{border-top:1px solid rgba(157,78,221,.14)}
+.pcard{background:var(--surface);border:1px solid var(--line);border-radius:20px;overflow:hidden;display:flex;flex-direction:column;transition:transform .35s,border-color .35s,box-shadow .35s}
+.pcard:hover{transform:translateY(-8px);border-color:var(--violet);box-shadow:var(--glow)}
+.thumb{aspect-ratio:16/10;position:relative;overflow:hidden;border-bottom:1px solid var(--line)}
+.thumb::before,.thumb::after{content:"";position:absolute;transition:transform .5s}
+.pcard:hover .thumb::before{transform:scale(1.08)}
+.pbody{padding:24px 24px 26px;display:flex;flex-direction:column;flex:1}
+.pbody h3{font-size:1.25rem;margin-bottom:8px}
+.pbody p{color:var(--muted);font-size:.95rem;flex:1}
+.pbody .link{margin-top:18px;align-self:flex-start}
+.link{color:var(--lilac);font-weight:600;border-bottom:1px solid transparent;transition:border-color .2s,text-shadow .2s}
+.link:hover{border-color:var(--lilac);text-shadow:0 0 12px rgba(199,125,255,.7)}
+
+/* thumbnails: web */
+.web{background:linear-gradient(135deg,#1a1228,#0e0e14)}
+.web::before{inset:16% 10%;border:1px solid var(--violet);border-radius:12px;background:repeating-linear-gradient(0deg,rgba(157,78,221,.28) 0 6px,transparent 6px 22px);box-shadow:inset 0 0 30px rgba(157,78,221,.3)}
+.web::after{left:10%;right:10%;top:16%;height:22px;background:rgba(199,125,255,.35);border-radius:12px 12px 0 0}
+.web.b::before{background:linear-gradient(90deg,rgba(157,78,221,.35) 0 30%,transparent 30%),repeating-linear-gradient(0deg,rgba(199,125,255,.22) 0 8px,transparent 8px 24px)}
+.web.c::before{background:radial-gradient(circle at 30% 60%,rgba(199,125,255,.5) 0 14%,transparent 15%),radial-gradient(circle at 65% 40%,rgba(157,78,221,.5) 0 18%,transparent 19%)}
+/* thumbnails: 3d */
+.art{background:radial-gradient(circle at 50% 55%,rgba(199,125,255,.5),transparent 40%),#0d0b13}
+.art::before{left:50%;top:50%;width:38%;aspect-ratio:1;margin:-19% 0 0 -19%;transform:rotate(45deg);border:2px solid var(--lilac);border-radius:18%;box-shadow:var(--glow),inset 0 0 30px rgba(157,78,221,.5)}
+.art::after{left:50%;top:50%;width:18%;aspect-ratio:1;margin:-9% 0 0 -9%;background:linear-gradient(135deg,var(--lilac),var(--violet));border-radius:50%;filter:blur(2px);box-shadow:var(--glow)}
+.art.b::before{border-radius:50%;transform:none}
+.art.c::before{border-radius:0;transform:rotate(20deg) skew(10deg)}
+/* thumbnails: game */
+.game{background:linear-gradient(180deg,#120d1d,#0a0a0c)}
+.game::before{left:0;right:0;bottom:0;height:46%;background:linear-gradient(transparent,rgba(157,78,221,.4)),repeating-linear-gradient(90deg,rgba(199,125,255,.4) 0 2px,transparent 2px 36px);clip-path:polygon(0 40%,20% 15%,40% 45%,62% 5%,82% 35%,100% 20%,100% 100%,0 100%)}
+.game::after{right:16%;top:16%;width:42px;height:42px;border-radius:50%;background:var(--lilac);box-shadow:var(--glow)}
+.game.b::before{clip-path:polygon(0 60%,25% 30%,50% 60%,75% 20%,100% 50%,100% 100%,0 100%)}
+.game.c::after{right:auto;left:16%;width:28px;height:28px;border-radius:6px}
+
+/* contact */
+.contact{text-align:center;border-top:1px solid rgba(157,78,221,.14)}
+.contact .head h2::after{margin-inline:auto}
+.contact .head p{margin-inline:auto}
+.mail{display:inline-block;margin-bottom:34px;padding:16px 34px;border-radius:999px;font-family:var(--display);font-weight:600;font-size:clamp(1rem,2.6vw,1.45rem);color:var(--lilac);border:1px solid var(--violet);box-shadow:var(--glow);word-break:break-all;transition:transform .25s,background .25s,color .25s}
+.mail:hover{transform:translateY(-4px);background:var(--violet);color:#fff}
+.socials{display:flex;justify-content:center;gap:16px;flex-wrap:wrap}
+.social{display:flex;align-items:center;gap:12px;padding:15px 26px;border-radius:16px;border:1px solid var(--line);background:var(--surface);font-weight:600;transition:transform .3s,border-color .3s,box-shadow .3s,color .3s}
+.social svg{width:22px;height:22px;fill:currentColor}
+.social svg.stroke{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.social:hover{transform:translateY(-6px);border-color:var(--violet);box-shadow:var(--glow);color:var(--lilac)}
+footer{padding:30px 0;text-align:center;color:var(--muted);font-size:.88rem;border-top:1px solid var(--line)}
+
+@media(max-width:900px){
+  .hero .wrap{grid-template-columns:1fr}
+  .grid3{grid-template-columns:1fr}
+  .profile{order:-1;width:min(260px,70%)}
+  nav ul{gap:18px;font-size:.88rem}
+}
+@media(min-width:601px) and (max-width:900px){.grid3.projects{grid-template-columns:repeat(2,1fr)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <a href="#top" class="logo">YN.</a>
+    <ul>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#fullstack">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <div>
+      <h1>Hi, I'm Indumini <span>I build worlds.</span></h1>
+      <p>IT undergraduate who builds full stack web apps, sculpts 3D art in Blender and ships playable games in Unity.</p>
+      <div class="btns">
+        <a class="btn primary" href="#fullstack">See my work</a>
+        <a class="btn ghost" href="#contact">Get in touch</a>
+      </div>
+    </div>
+    <div class="profile">
+      <div class="photo">
+        <!-- Replace this block with: <img src="your-photo.jpg" alt="Your Name"> -->
+        <div class="placeholder">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.4" stroke-linecap="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg>
+          Add your photo here
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section id="skills">
+  <div class="wrap">
+    <div class="head">
+      <h2>Skills</h2>
+      <p>Three disciplines, one habit: take an idea from sketch to something people can use.</p>
+    </div>
+    <div class="grid3">
+      <a class="card" href="#fullstack">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 4l-4 16"/></svg></div>
+        <h3>Full stack development</h3>
+        <p>Responsive front ends, clean APIs and databases that hold up when real people use them.</p>
+        <ul class="tags"><li>HTML/CSS</li><li>JavaScript</li><li>Node.js</li><li>SQL</li></ul>
+      </a>
+      <a class="card" href="#art3d">
+        <div class="icon"><svg viewBox="0 0 24 24"><path d="M12 2 3 7v10l9 5 9-5V7z"/><path d="m3 7 9 5 9-5M12 12v10"/></svg></div>
+        <h3>3D art &amp; modeling</h3>
+        <p>Props, characters and environments modeled, textured and lit in Blender.</p>
+        <ul class="tags"><li>Blender</li><li>Sculpting</li><li>Texturing</li><li>Rendering</li></ul>
+      </a>
+      <a class="card" href="#gamedev">
+        <div class="icon"><svg viewBox="0 0 24 24"><rect x="2" y="7" width="20" height="11" rx="5"/><path d="M7 10v5M4.5 12.5h5M16 11h.01M18.5 14h.01"/></svg></div>
+        <h3>Game development</h3>
+        <p>Gameplay systems, level design and polish in Unity, built around how the game feels to play.</p>
+        <ul class="tags"><li>Unity</li><li>C#</li><li>Game design</li><li>Level design</li></ul>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section class="field" id="fullstack">
+  <div class="wrap">
+    <div class="head">
+      <h2>Full stack development</h2>
+      <p>Web apps built end to end: interface, API and database.</p>
+    </div>
+    <div class="grid3 projects">
+      <article class="pcard">
+        <div class="thumb web" role="img" aria-label="Web app preview"></div>
+        <div class="pbody">
+          <h3>Web app one</h3>
+          <p>Describe what it does, who it is for and the problem it solves.</p>
+          <ul class="tags"><li>React</li><li>Node.js</li><li>MongoDB</li></ul>
+          <a class="link" href="#">View project</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb web b" role="img" aria-label="Dashboard preview"></div>
+        <div class="pbody">
+          <h3>Web app two</h3>
+          <p>Add the main features, such as logins, a dashboard or payments.</p>
+          <ul class="tags"><li>Express</li><li>MySQL</li><li>REST API</li></ul>
+          <a class="link" href="#">View project</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb web c" role="img" aria-label="Data app preview"></div>
+        <div class="pbody">
+          <h3>Web app three</h3>
+          <p>Share what you built, the stack you chose and what you learned.</p>
+          <ul class="tags"><li>JavaScript</li><li>PHP</li><li>Git</li></ul>
+          <a class="link" href="#">View project</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="field" id="art3d">
+  <div class="wrap">
+    <div class="head">
+      <h2>3D art &amp; modeling</h2>
+      <p>Models and scenes made in Blender, from blockout to final render.</p>
+    </div>
+    <div class="grid3 projects">
+      <article class="pcard">
+        <div class="thumb art" role="img" aria-label="3D model render"></div>
+        <div class="pbody">
+          <h3>Model one</h3>
+          <p>Name the model, the style and the techniques you used to make it.</p>
+          <ul class="tags"><li>Blender</li><li>Hard surface</li><li>Cycles</li></ul>
+          <a class="link" href="#">View render</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb art b" role="img" aria-label="Character model render"></div>
+        <div class="pbody">
+          <h3>Model two</h3>
+          <p>Show a character or prop, with notes on sculpting and texturing.</p>
+          <ul class="tags"><li>Sculpting</li><li>UV mapping</li><li>Substance</li></ul>
+          <a class="link" href="#">View render</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb art c" role="img" aria-label="Environment render"></div>
+        <div class="pbody">
+          <h3>Model three</h3>
+          <p>Add an environment or scene, plus your lighting and render setup.</p>
+          <ul class="tags"><li>Environment</li><li>Lighting</li><li>Eevee</li></ul>
+          <a class="link" href="#">View render</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="field" id="gamedev">
+  <div class="wrap">
+    <div class="head">
+      <h2>Game development</h2>
+      <p>Playable projects built in Unity with custom mechanics and original assets.</p>
+    </div>
+    <div class="grid3 projects">
+      <article class="pcard">
+        <div class="thumb game" role="img" aria-label="Game level preview"></div>
+        <div class="pbody">
+          <h3>Game one</h3>
+          <p>Explain the core idea, the genre and your role in building it.</p>
+          <ul class="tags"><li>Unity</li><li>C#</li><li>3D</li></ul>
+          <a class="link" href="#">Play the demo</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb game b" role="img" aria-label="Game world preview"></div>
+        <div class="pbody">
+          <h3>Game two</h3>
+          <p>Describe a mechanic or system you designed, like combat or AI.</p>
+          <ul class="tags"><li>Gameplay</li><li>Physics</li><li>Level design</li></ul>
+          <a class="link" href="#">Play the demo</a>
+        </div>
+      </article>
+      <article class="pcard">
+        <div class="thumb game c" role="img" aria-label="Game prototype preview"></div>
+        <div class="pbody">
+          <h3>Game three</h3>
+          <p>Add a game jam entry or prototype and what you learned shipping it.</p>
+          <ul class="tags"><li>Game jam</li><li>Blender assets</li><li>Unity</li></ul>
+          <a class="link" href="#">Play the demo</a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <div class="wrap">
+    <div class="head">
+      <h2>Contact</h2>
+      <p>Open to internships, freelance gigs and collaborations. Email me or find me on these platforms.</p>
+    </div>
+    <a class="mail" href="mailto:pabasarainduminib@gmail.com">pabasarainduminib@gmail.com</a>
+    <div class="socials">
+      <a class="social" href="https://www.linkedin.com/in/your-profile" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.75h4V21H3zM9.75 9.75h3.8v1.6h.06c.53-1 1.82-2.05 3.75-2.05 4 0 4.74 2.63 4.74 6.05V21h-4v-4.9c0-1.17-.02-2.67-1.63-2.67-1.63 0-1.88 1.27-1.88 2.58V21h-4z"/></svg>
+        LinkedIn
+      </a>
+      <a class="social" href="https://github.com/your-username" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.11-1.47-1.11-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.52 2.34 1.08 2.9.83.09-.65.35-1.08.63-1.33-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.98 1.03-2.68-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.5 9.5 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.59 1.03 2.68 0 3.84-2.34 4.69-4.57 4.93.36.31.68.92.68 1.85v2.74c0 .27.18.58.69.48A10 10 0 0 0 12 2z"/></svg>
+        GitHub
+      </a>
+      <a class="social" href="https://www.fiverr.com/your-username" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24"><path d="M3 7h5V5.5C8 3.6 9.2 3 11 3h3v3.4h-1.6c-.9 0-1.2.3-1.2 1V7H15v3.4h-3.8V21H7.6V10.4H3z"/><path d="M16 7h4v14h-4z"/><circle cx="18" cy="4" r="2"/></svg>
+        Fiverr
+      </a>
+      <a class="social" href="mailto:pabasarainduminib@gmail.com">
+        <svg class="stroke" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
+        Email
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">&copy; 2026 Indumini. Designed and coded by me.</div>
+</footer>
+
+</body>
+</html>
